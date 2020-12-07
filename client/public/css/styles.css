@@ -265,7 +265,7 @@ img {
 
 .container {
   max-width: 110rem;
-  overflow: scroll;
+  overflow: auto;
   margin: auto;
   padding: 0 1.6rem;
   margin-top: 9.6rem;
