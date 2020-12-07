@@ -7,7 +7,7 @@ const User = require('../models/User');
 
 // Create a Post
 
-router.post('/posts', auth, async (req, res) => {
+router.post('/api/posts', auth, async (req, res) => {
   const text = req.body.text;
   const user = await req.user;
   const { avatar, name, id } = user;
@@ -32,7 +32,7 @@ router.post('/posts', auth, async (req, res) => {
 
 // Get a Post by ID
 
-router.get('/posts/post/:id', async (req, res) => {
+router.get('/api/posts/post/:id', async (req, res) => {
   const _id = req.params.id;
   try {
     const post = await Post.findById({ _id });
@@ -50,7 +50,7 @@ router.get('/posts/post/:id', async (req, res) => {
 
 // Get All Posts
 
-router.get('/posts/all', auth, async (req, res) => {
+router.get('/api/posts/all', auth, async (req, res) => {
   try {
     const posts = await Post.find().sort({ date: -1 });
     if (!posts) {
@@ -64,7 +64,7 @@ router.get('/posts/all', auth, async (req, res) => {
 
 // Delete a Post
 
-router.delete('/posts/delete/:id', auth, async (req, res) => {
+router.delete('/api/posts/delete/:id', auth, async (req, res) => {
   const user = await req.user;
   const { id } = user;
   const _id = req.params.id;
@@ -89,7 +89,7 @@ router.delete('/posts/delete/:id', auth, async (req, res) => {
 
 // Like a Post
 
-router.patch('/posts/like/:id', auth, async (req, res) => {
+router.patch('/api/posts/like/:id', auth, async (req, res) => {
   const _id = req.params.id;
   const user = await req.user;
   const { id } = user;
@@ -109,7 +109,7 @@ router.patch('/posts/like/:id', auth, async (req, res) => {
 
 // UnLike a Post
 
-router.patch('/posts/unlike/:id', auth, async (req, res) => {
+router.patch('/api/posts/unlike/:id', auth, async (req, res) => {
   const _id = req.params.id;
   const user = await req.user;
   const { id } = user;
@@ -129,7 +129,7 @@ router.patch('/posts/unlike/:id', auth, async (req, res) => {
 
 // Comment on a Post
 
-router.post('/posts/comment/:id', auth, async (req, res) => {
+router.post('/api/posts/comment/:id', auth, async (req, res) => {
   const _id = req.params.id;
   const text = req.body.text;
   const user = await req.user;
@@ -160,7 +160,7 @@ router.post('/posts/comment/:id', auth, async (req, res) => {
 
 // Delete a Comment
 
-router.delete('/posts/comment/:id/:comment_id', auth, async (req, res) => {
+router.delete('/api/posts/comment/:id/:comment_id', auth, async (req, res) => {
   const user = await req.user;
   const { id } = user;
   const _id = req.params.id;
@@ -195,7 +195,7 @@ router.delete('/posts/comment/:id/:comment_id', auth, async (req, res) => {
 
 // Edit a comment
 
-router.patch('/comment/edit/:id/:comment_id', auth, async (req, res) => {
+router.patch('/api/comment/edit/:id/:comment_id', auth, async (req, res) => {
   const user = await req.user;
   const { id } = user;
   const _id = req.params.id;

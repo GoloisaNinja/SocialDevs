@@ -25,7 +25,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
   const body = JSON.stringify({ name, email, password });
 
   try {
-    const res = await axios.post('/users', body, config);
+    const res = await axios.post('/api/users', body, config);
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data,
@@ -53,7 +53,7 @@ export const loadUser = () => async (dispatch) => {
     SetAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get('/users/auth');
+    const res = await axios.get('/api/users/auth');
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -76,7 +76,7 @@ export const login = (email, password) => async (dispatch) => {
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post('/users/login', body, config);
+    const res = await axios.post('/api/users/login', body, config);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
@@ -103,7 +103,7 @@ export const logout = () => async (dispatch) => {
   };
   const body = '';
   try {
-    const res = await axios.post('/users/logout', body, config);
+    const res = await axios.post('/api/users/logout', body, config);
     if (res.status === 200) {
       dispatch({ type: LOGOUT });
       dispatch({ type: CLEAR_PROFILE });
@@ -125,7 +125,7 @@ export const logoutAll = () => async (dispatch) => {
   };
   const body = '';
   try {
-    const res = await axios.post('/users/logoutAll', body, config);
+    const res = await axios.post('/api/users/logoutAll', body, config);
     if (res.status === 200) {
       dispatch({ type: LOGOUT_ALL });
       dispatch({ type: CLEAR_PROFILE });
@@ -152,7 +152,7 @@ export const accountDelete = () => async (dispatch) => {
     };
     const body = '';
     try {
-      const res = await axios.delete('/users/deleteAccount', body, config);
+      const res = await axios.delete('/api/users/deleteAccount', body, config);
       if (res.status === 200) {
         dispatch({ type: USER_DELETE });
         dispatch({ type: CLEAR_PROFILE });

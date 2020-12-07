@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 const User = require('../models/User');
 const Profile = require('../models/Profile');
 
-router.get('/users/auth', auth, async (req, res) => {
+router.get('/api/users/auth', auth, async (req, res) => {
   try {
     const user = await req.user;
     res.json(user);
@@ -16,7 +16,7 @@ router.get('/users/auth', auth, async (req, res) => {
 
 // Create new User
 
-router.post('/users', async (req, res) => {
+router.post('/api/users', async (req, res) => {
   const user = new User(req.body);
 
   try {
@@ -37,7 +37,7 @@ router.post('/users', async (req, res) => {
 
 // User Login
 
-router.post('/users/login', async (req, res) => {
+router.post('/api/users/login', async (req, res) => {
   try {
     const user = await User.findByCredentials(
       req.body.email,
@@ -54,7 +54,7 @@ router.post('/users/login', async (req, res) => {
 
 // User Logout
 
-router.post('/users/logout', auth, async (req, res) => {
+router.post('/api/users/logout', auth, async (req, res) => {
   try {
     req.user.tokens = req.user.tokens.filter((token) => {
       return token.token !== req.token;
@@ -68,7 +68,7 @@ router.post('/users/logout', auth, async (req, res) => {
 
 // User Logout all Tokens
 
-router.post('/users/logoutAll', auth, async (req, res) => {
+router.post('/api/users/logoutAll', auth, async (req, res) => {
   try {
     req.user.tokens = [];
     await req.user.save();
@@ -80,7 +80,7 @@ router.post('/users/logoutAll', auth, async (req, res) => {
 
 // User Delete Account and Profile
 
-router.delete('/users/deleteAccount', auth, async (req, res) => {
+router.delete('/api/users/deleteAccount', auth, async (req, res) => {
   try {
     const user = await req.user;
     if (!user) {

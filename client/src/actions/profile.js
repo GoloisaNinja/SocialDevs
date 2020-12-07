@@ -22,7 +22,7 @@ export const getCurrentProfile = () => async (dispatch) => {
       },
     };
     const body = '';
-    const res = await axios.get('/profile/me', body, config);
+    const res = await axios.get('/api/profile/me', body, config);
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
@@ -46,7 +46,7 @@ export const getAllProfiles = () => async (dispatch) => {
       },
     };
     const body = '';
-    const res = await axios.get('/profiles', body, config);
+    const res = await axios.get('/api/profiles', body, config);
     dispatch({
       type: GET_PROFILES,
       payload: res.data,
@@ -72,7 +72,7 @@ export const getProfileById = (userid) => async (dispatch) => {
       },
     };
     const body = '';
-    const res = await axios.get(`/profileById/${_id}`, body, config);
+    const res = await axios.get(`/api/profileById/${_id}`, body, config);
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
@@ -95,7 +95,11 @@ export const getGitHubRepos = (username) => async (dispatch) => {
       },
     };
     const body = '';
-    const res = await axios.get(`/profile/github/${username}`, body, config);
+    const res = await axios.get(
+      `/api/profile/github/${username}`,
+      body,
+      config
+    );
     dispatch({
       type: GET_REPOS,
       payload: res.data,
@@ -121,7 +125,7 @@ export const createProfile = (formData, history, edit = false) => async (
         Authorization: token,
       },
     };
-    const res = await axios.post('/profile', formData, config);
+    const res = await axios.post('/api/profile', formData, config);
 
     dispatch({
       type: GET_PROFILE,
@@ -154,7 +158,11 @@ export const addEducation = (formData, history) => async (dispatch) => {
         Authorization: token,
       },
     };
-    const res = await axios.patch('/profile/me/education', formData, config);
+    const res = await axios.patch(
+      '/api/profile/me/education',
+      formData,
+      config
+    );
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -186,7 +194,11 @@ export const addExperience = (formData, history) => async (dispatch) => {
         Authorization: token,
       },
     };
-    const res = await axios.patch('/profile/me/experience', formData, config);
+    const res = await axios.patch(
+      '/api/profile/me/experience',
+      formData,
+      config
+    );
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -220,7 +232,11 @@ export const deleteExperience = (id) => async (dispatch) => {
       },
     };
     const body = '';
-    const res = await axios.post(`/profile/me/experience/${_id}`, body, config);
+    const res = await axios.post(
+      `/api/profile/me/experience/${_id}`,
+      body,
+      config
+    );
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -251,7 +267,11 @@ export const deleteEducation = (id) => async (dispatch) => {
       },
     };
     const body = '';
-    const res = await axios.post(`/profile/me/education/${_id}`, body, config);
+    const res = await axios.post(
+      `/api/profile/me/education/${_id}`,
+      body,
+      config
+    );
 
     dispatch({
       type: UPDATE_PROFILE,

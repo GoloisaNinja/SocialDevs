@@ -9,7 +9,7 @@ const ghId = config.get('githubClientId');
 const ghCs = config.get('githubClientSecret');
 const ghToken = config.get('githubToken');
 
-router.get('/profile/me', auth, async (req, res) => {
+router.get('/api/profile/me', auth, async (req, res) => {
   const user = await req.user;
   const _id = req.user._id;
   let match = {};
@@ -29,7 +29,7 @@ router.get('/profile/me', auth, async (req, res) => {
   }
 });
 
-router.post('/profile', auth, async (req, res) => {
+router.post('/api/profile', auth, async (req, res) => {
   const user = await req.user;
   const _id = req.user._id;
   const {
@@ -88,7 +88,7 @@ router.post('/profile', auth, async (req, res) => {
   }
 });
 
-router.get('/profiles', async (req, res) => {
+router.get('/api/profiles', async (req, res) => {
   try {
     const profiles = await Profile.find().populate('owner', ['name', 'avatar']);
     res.status(200).send(profiles);
@@ -97,7 +97,7 @@ router.get('/profiles', async (req, res) => {
   }
 });
 
-router.get('/profileById/:_id', async (req, res) => {
+router.get('/api/profileById/:_id', async (req, res) => {
   try {
     const profile = await Profile.findOne({
       owner: req.params._id,
@@ -114,7 +114,7 @@ router.get('/profileById/:_id', async (req, res) => {
   }
 });
 
-router.delete('/profile/me', auth, async (req, res) => {
+router.delete('/api/profile/me', auth, async (req, res) => {
   const user = await req.user;
   const _id = req.user._id;
 
@@ -130,7 +130,7 @@ router.delete('/profile/me', auth, async (req, res) => {
   }
 });
 
-router.patch('/profile/me/experience', auth, async (req, res) => {
+router.patch('/api/profile/me/experience', auth, async (req, res) => {
   const updates = Object.keys(req.body);
   const allowedUpdates = [
     'title',
@@ -168,7 +168,7 @@ router.patch('/profile/me/experience', auth, async (req, res) => {
   }
 });
 
-router.post('/profile/me/experience/:_id', auth, async (req, res) => {
+router.post('/api/profile/me/experience/:_id', auth, async (req, res) => {
   const user = await req.user;
   const _id = req.user._id;
   try {
@@ -188,7 +188,7 @@ router.post('/profile/me/experience/:_id', auth, async (req, res) => {
   }
 });
 
-router.patch('/profile/me/education', auth, async (req, res) => {
+router.patch('/api/profile/me/education', auth, async (req, res) => {
   const updates = Object.keys(req.body);
   const allowedUpdates = [
     'school',
@@ -226,7 +226,7 @@ router.patch('/profile/me/education', auth, async (req, res) => {
   }
 });
 
-router.post('/profile/me/education/:_id', auth, async (req, res) => {
+router.post('/api/profile/me/education/:_id', auth, async (req, res) => {
   const user = await req.user;
   const _id = req.user._id;
   try {
@@ -246,7 +246,7 @@ router.post('/profile/me/education/:_id', auth, async (req, res) => {
   }
 });
 
-router.get('/profile/github/:username', async (req, res) => {
+router.get('/api/profile/github/:username', async (req, res) => {
   try {
     const uri = encodeURI(
       `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`
