@@ -1,0 +1,39 @@
+.post-form .post-form-header {
+  background: $primary-color;
+  padding: 1rem;
+}
+.post {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-gap: 3.2rem;
+  align-items: center;
+  & > div:first-child {
+    text-align: center;
+  }
+  & img {
+    width: 100px;
+  }
+  & .comment-count {
+    background: $light-color;
+    color: $primary-color;
+    padding: 0.1rem 0.2rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+  }
+  & .post-date {
+    color: #aaa;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+}
+@media (max-width: 70rem) {
+  .post {
+    grid-template-columns: 1fr;
+  }
+  .post a {
+    padding: 0.5rem;
+  }
+  .post btn {
+    padding: 0.5rem;
+  }
+}

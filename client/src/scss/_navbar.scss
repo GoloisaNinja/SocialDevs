@@ -1,0 +1,39 @@
+// Navbar Styles
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 3.2rem;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  top: 0;
+  border-bottom: solid 1px $primary-color;
+  opacity: 0.9;
+}
+.navbar a {
+  color: #fff;
+  padding: 0.7rem;
+  margin: 0 0.4rem;
+  &:hover {
+    color: $primary-color;
+  }
+}
+.navbar ul {
+  display: flex;
+}
+@media (max-width: 70rem) {
+  .navbar {
+    display: block;
+    text-align: center;
+    justify-content: center;
+  }
+  .navbar ul {
+    text-align: center;
+    justify-content: center;
+  }
+  .navbar h1 {
+    margin-bottom: 1.5rem;
+  }
+}

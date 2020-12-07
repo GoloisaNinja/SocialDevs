@@ -1,0 +1,11 @@
+// Profile Styles
+
+.profile {
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr;
+  grid-gap: 3rem;
+  align-items: center;
+  padding: 1.5rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
